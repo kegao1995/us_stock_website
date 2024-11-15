@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Stock Market</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <h1>美股实时行情</h1>
+    </header>
+
+    <!-- 股票列表表格 -->
+    <section id="stock-list">
+        <table>
+            <thead>
+                <tr>
+                    <th data-column="number">Number</th>
+                    <th data-column="symbol">股票代码</th>
+                    <th data-column="longName">公司名称</th>
+                    <th data-column="currentPrice">当前价格</th>
+                    <th data-column="dailyChangePercent">日涨幅</th>
+                    <th data-column="previousClose">前收盘价</th>
+                    <th data-column="marketCap">市值</th>
+                    <th data-column="dayHigh">日高</th>
+                    <th data-column="dayLow">日低</th>
+                    <th data-column="trailingPE">市盈率</th>
+                    <th data-column="dividendYield">股息率</th>
+                    <th data-column="sector">行业</th>
+                    <th data-column="weight">Weight</th>
+                </tr>
+            </thead>
+            
+            <tbody id="stock-data">
+                <!-- 股票数据将通过 JavaScript 动态生成 -->
+            </tbody>
+        </table>        
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
