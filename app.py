@@ -39,7 +39,9 @@ def get_stock_data():
             data["Number"] = item["Number"]
             data["Weight"] = item["Weight"]
             stock_data.append(data)
+            
     return jsonify(stock_data)
 
 if __name__ == "__main__":
+    
     app.run(debug=True)

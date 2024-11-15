@@ -1,3 +1,4 @@
+console.log("Script file loaded");
 document.addEventListener("DOMContentLoaded", () => {
     fetchStockData();
     setInterval(fetchStockData, 60000); // 每60秒刷新一次数据
@@ -57,14 +58,19 @@ async function fetchStockData() {
         // 清空表格内容，仅保留表头
         stockDataElement.innerHTML = ""; 
 
+
+
         data.forEach(stock => {
             const row = document.createElement("tr");
-
+        
+            // 调试输出 currentPrice, volume 和 sharesOutstanding
+            // console.log("Current Price:", stock.currentPrice);
+        
             // 计算日涨幅百分比
             const dailyChangePercent = stock.previousClose 
                 ? ((stock.currentPrice / stock.previousClose - 1) * 100).toFixed(2)
                 : "N/A";
-
+                
             // 创建表格行内容
             row.innerHTML = `
                 <td>${stock.Number || "N/A"}</td>
@@ -74,15 +80,20 @@ async function fetchStockData() {
                 <td class="daily-change">${dailyChangePercent}%</td>
                 <td>$${stock.previousClose?.toFixed(2) || "N/A"}</td>
                 <td>${stock.marketCap ? formatNumber(stock.marketCap) : "N/A"}</td>
+                <td>${stock.volume? formatNumber(stock.volume) : "N/A"}</td>
+                <td>${stock.sharesOutstanding? formatNumber(stock.sharesOutstanding) : "N/A"}</td>
                 <td>$${stock.dayHigh?.toFixed(2) || "N/A"}</td>
                 <td>$${stock.dayLow?.toFixed(2) || "N/A"}</td>
                 <td>${stock.trailingPE?.toFixed(2) || "N/A"}</td>
                 <td>${((stock.dividendYield || 0) * 100).toFixed(2)}%</td>
                 <td>${stock.sector || "N/A"}</td>
                 <td>${stock.Weight || "N/A"}</td>
-            `;
-            stockDataElement.appendChild(row);
 
+            `;
+            //<td>${stock.volume? formatNumber(stock.volume) : "N/A"}</td>
+
+            stockDataElement.appendChild(row);
+        
             // Apply gradient color based on dailyChangePercent value
             const dailyChangeCell = row.querySelector(".daily-change");
             if (dailyChangePercent !== "N/A") {
@@ -90,6 +101,7 @@ async function fetchStockData() {
                 dailyChangeCell.style.color = "black"; // Adjust text color if needed
             }
         });
+        
     } catch (error) {
         console.error("Error fetching stock data:", error);
     }
