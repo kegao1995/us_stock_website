@@ -20,3 +20,9 @@ a = fetch_stock_data('TSLA')
 
 stock = yf.Ticker('TSLA')
 # %%
+stock = yf.Ticker('USFR')
+stock.news
+# %%
+fund = yf.Ticker('QQQ')
+b=fund.get_funds_data()
+# %%
